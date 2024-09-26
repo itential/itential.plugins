@@ -1,0 +1,58 @@
+# Copyright 2024, Itential, Inc
+# GNU General Public License v3.0+ (https://www.gnu.org/licenses/gpl-3.0.txt)
+
+# The below is an example of the Solarwinds inventory plugin configuration
+# file.  To use this plugin, Ansible needs to be configured.   This can be done
+# by setting tthe following environment variables.
+#
+# ANSIBLE_INVENTORY=path/to/solarwinds.yaml
+# ANSIBLE_COLLECTIONS_PATH=/path/to/ansible_collections
+# ANSIBLE_INVENTORY_ENABLED=itential.plugins.solarwinds
+#
+# The alternative way to use enable this plugin instead of environment
+# variaable is to use the `ansible.cfg` file.  The following settings need to
+# be configured to use the `ansible.cfg`.
+#
+# [defaults]
+# inventory=path/to/solarwinds.yaml
+# collections_path=/path/to/ansible_collections
+#
+# [inventory]
+# enable_plugins=itential.plugins.solarwinds
+#
+# Note: Only one of the configuration methods is required.
+#
+# You can quickly test if the plugin is working using the `ansible-inventory`
+# command.
+#
+# ```bash
+# ansible-inventory --list
+# ```
+---
+# The value for plugin is required and is alway sset to
+# `itential.plugins.solarwinds`.
+plugin: itential.plugins.solarwinds
+
+# Configures the url to the server.  For example, `https://1.2.3.4` or
+# `https://solarwindows.example.com`.  This value is required
+base_url: <Hostname or IP address to server>
+
+# Configures the port value to use when connecting to the server.  If this
+# value is not specified, the default value of `17778` will be used
+api_port: <API port>
+
+# Configures the username to use when autoenticating to the server.  This value
+# is required.
+username: <username used to authenticate to Solarwinds API>
+
+# Configures the password to use when authenticating to the server  This value
+# is required.
+password: <password used to authenticate to Solarwinds API>
+
+# Enables or disables certification verification for TLS connections.  The
+# default value is `True`
+verify_ssl: <true | false >
+
+# Enables or disables the use of Solarwinds ConnectionProfile as the device
+# credentials
+use_connection_profiles: <true | false >
