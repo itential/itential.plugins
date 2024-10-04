@@ -157,6 +157,12 @@ class LookupModule(LookupBase):
             if value is not None:
                 params[key] = value
 
+        if "AppID" not in params:
+            raise AnsibleError("missing required value: appid")
+
+        if len(params) < 2:
+            raise AnsibleError("must specify a query parameter")
+
         headers = {
             "Content-Type": "application/json"
         }
@@ -186,6 +192,10 @@ class LookupModule(LookupBase):
         except Exception as exc:
             raise AnsibleError(str(exc))
 
-        ret.append(resp.json().get("Content"))
+        content = resp.Json().get("Content")
+        if not content:
+            raise AnsibleError("error trying to retrieve password")
+
+        ret.append(content)
 
         return ret
