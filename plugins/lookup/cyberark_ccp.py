@@ -21,6 +21,7 @@ options:
     description:
       - The hostname or IP address of the CCP server
     type: string
+    required: true
 
   port:
     description:
@@ -47,6 +48,7 @@ options:
     description:
       - Sets the unique ID of the application issuing the password request
     type: string
+    required: true
 
   safe:
     description:
@@ -148,7 +150,7 @@ class LookupModule(LookupBase):
 
         verify = kwargs.get("verify")
 
-        url = http.make_url(host, "/AIMWebService/api/Accounts", use_tls=use_tls)
+        url = http.make_url(host, "/AIMWebService/api/Accounts", port=port, use_tls=use_tls)
 
         params = {}
 
@@ -156,6 +158,12 @@ class LookupModule(LookupBase):
             value = kwargs.get(option)
             if value is not None:
                 params[key] = value
+
+        if "AppID" not in params:
+            raise AnsibleError("missing required value: appid")
+
+        if len(params) < 2:
+            raise AnsibleError("must specify a query parameter")
 
         headers = {
             "Content-Type": "application/json"
@@ -186,6 +194,10 @@ class LookupModule(LookupBase):
         except Exception as exc:
             raise AnsibleError(str(exc))
 
-        ret.append(resp.json().get("Content"))
+        content = resp.Json().get("Content")
+        if not content:
+            raise AnsibleError("error trying to retrieve password")
+
+        ret.append(content)
 
         return ret
