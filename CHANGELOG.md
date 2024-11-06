@@ -1,5 +1,8 @@
 # Changelog
 
-## v1.0.0 (in progress)
+## v1.0.0 (October 04, 2024)
 
-* Initial release of `itential.core` collection
+* add additional error messages
+* initial commit for itential.plugins collection
+* pass port value to make_url
+
