@@ -58,7 +58,7 @@ for tag in tags:
                 num = test.group()
                 num = num[2:]
                 num = num[:-1]
-                sub = ' https://github.com/itential/itential.core/pull/' + num
+                sub = ' https://github.com/itential/itential.plugins/pull/' + num
                 git_logs[i] = re.sub('\(\#\d*\)',sub,git_logs[i])
 
         # Add the commits to the changelogs dictionary using the tag as the key and the
@@ -88,5 +88,5 @@ for release,changes in reversed(changelogs.items()):
     for i in range(len(tags)):
         if i > 0:
             if release == tags[i]:
-                full = 'https://github.com/itential/itential.core/compare/' + tags[i-1] + '...' + release
+                full = 'https://github.com/itential/itential.plugins/compare/' + tags[i-1] + '...' + release
                 print('Full Changelog:', full, '\n\n')
