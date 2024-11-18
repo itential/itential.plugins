@@ -111,6 +111,7 @@ from ansible.errors import AnsibleError
 from ansible.plugins.lookup import LookupBase
 
 from ansible_collections.itential.core.plugins.module_utils import http
+from ansible_collections.itential.core.plugins.module_utils import display
 
 
 PARAMETERS = frozenset((
@@ -187,6 +188,9 @@ class LookupModule(LookupBase):
                     "private_key_file": private_key_file
                 })
 
+        display.vvvvv(f"url: {http_kwargs}")
+        display.vvvvv(f"Request: {http_kwargs}")
+        
         resp = http.get(url, **http_kwargs)
 
         try:
