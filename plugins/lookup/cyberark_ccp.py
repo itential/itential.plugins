@@ -188,9 +188,9 @@ class LookupModule(LookupBase):
                     "private_key_file": private_key_file
                 })
 
-        display.vvvvv(f"url: {http_kwargs}")
+        display.vvvvv(f"url: {url}")
         display.vvvvv(f"Request: {http_kwargs}")
-        
+
         resp = http.get(url, **http_kwargs)
 
         try:
