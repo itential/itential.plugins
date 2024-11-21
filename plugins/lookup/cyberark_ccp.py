@@ -111,6 +111,7 @@ from ansible.errors import AnsibleError
 from ansible.plugins.lookup import LookupBase
 
 from ansible_collections.itential.core.plugins.module_utils import http
+from ansible_collections.itential.core.plugins.module_utils import display
 
 
 PARAMETERS = frozenset((
@@ -181,11 +182,14 @@ class LookupModule(LookupBase):
             certificate_file = kwargs.get("certificate_file")
             private_key_file = kwargs.get("private_key_file")
 
-            if certificate_file is not None and private_key_file is None:
+            if certificate_file is not None and private_key_file is not None:
                 http_kwargs.update({
                     "certificate_file": certificate_file,
                     "private_key_file": private_key_file
                 })
+
+        display.vvvvv(f"url: {url}")
+        display.vvvvv(f"Request: {http_kwargs}")
 
         resp = http.get(url, **http_kwargs)
 
@@ -194,7 +198,7 @@ class LookupModule(LookupBase):
         except Exception as exc:
             raise AnsibleError(str(exc))
 
-        content = resp.Json().get("Content")
+        content = resp.json().get("Content")
         if not content:
             raise AnsibleError("error trying to retrieve password")
 
