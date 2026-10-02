@@ -1,7 +1,7 @@
 # Ansible Collection - itential.plugins
 
 The `itential.plugins` collection provides Ansible plugins for use in playbooks
-executed from Itential Automation Gateway.
+executed from Itential Gateway.
 
 All plugins provided in this collection are provided freely to the Ansible
 community and are fully community supported.
@@ -19,19 +19,19 @@ ansible-galaxy collection build <path to collection source code> --output-path <
 
 ## Installing the collection
 
-The collection can be installed using either the Itential Automation Gateway UI
+The collection can be installed using either the Itential Gateway UI
 or the Ansible Galaxy CLI directly or defined as part of a `requirements.yaml`
 file.
 
-To install the collection on a server running Itential Automation Gateway,
+To install the collection on a server running Itential Gateway,
 simply click the "Install a collection" from the main page toolbar.
 
 See the [Itential documentation](https//docs.itential.com) for more details about installing a collection
-on an Itential Automation Gateway server.
+on an Itential Gateway server.
 
 Alternatively, the Ansible Galaxy CLI can be used to install the collection.
 To use the Galaxy CLI, run the following command in your development
-environment or on the Itential Automation Gateway server.
+environment or on the Itential Gateway server.
 
 ```bash
 ansible-galaxy collection install itential.plugins
@@ -86,7 +86,7 @@ updated for each release and can be found [here](CHANGELOG.md)
 
 ## More Information
 
-Additional information about Itential Automation Gateway can be found at
+Additional information about Itential Gateway can be found at
 http://itential.com.
 
 
